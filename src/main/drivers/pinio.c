@@ -54,7 +54,7 @@ void pinioInit(const pinioConfig_t *pinioConfig)
             // Initial state after reset is input, pull-up.
             // Avoid momentary off by presetting the output to hi.
             if (pinioConfig->config[i] & PINIO_CONFIG_OUT_INVERTED) {
-                IOLo(io);
+                IOHi(io);
             }
             IOConfigGPIO(io, IOCFG_OUT_PP);
             break;
@@ -63,7 +63,7 @@ void pinioInit(const pinioConfig_t *pinioConfig)
         if (pinioConfig->config[i] & PINIO_CONFIG_OUT_INVERTED)
         {
             pinioRuntime[i].inverted = true;
-            IOHi(io);
+            IOLo(io);
             pinioRuntime[i].state = true;
         } else {
             pinioRuntime[i].inverted = false;
